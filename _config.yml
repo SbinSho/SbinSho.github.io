@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "ko-KR"
@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "박수호"
   avatar           : "/assets/images/profile/profile.png"
-  bio              : "아직 완성되지 않은 블로그입니다. 수정중에 있습니다!"
+  bio              : "개발자가 되기 위해 공부하고 중요한 내용을 기록하기 위한 블로그입니다!"
   location         : "Republic of Korea"
   email            : "suho0232@gmail.com"
   links:
