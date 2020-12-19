@@ -20,7 +20,7 @@ title                    : "SbinSho Blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "suho Park"
-description              : "Java와 Spring Framework 공부를 기록하는 블로그"
+description              : "Java와 Spring Framework의 기초를 다지는 블로그"
 url                      : "https://SbinSho.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "SbinSho/SbinSho.github.com"
@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "박수호"
   avatar           : "/assets/images/profile/profile.png"
-  bio              : "개발자가 되기 위해 공부하고 중요한 내용을 기록하기 위한 블로그입니다!"
+  bio              : "실력있는 개발자가 되기 위해 기초를 다지고<br/>공부한 내용을 기록하기 위한 블로그입니다!"
   location         : "Republic of Korea"
   email            : "suho0232@gmail.com"
   links:
