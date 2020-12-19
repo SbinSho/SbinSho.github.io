@@ -36,11 +36,16 @@
     <!-- archive-single 에선 post.date 사용 가능 -->
     <!-- archive-single는 포스트를 모아둔 페이지 -->
     <!-- 날짜 커스터마이징 -->
-    {% if post.date %} 
-      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> Date : {{ post.date | date: "%Y.%m.%d" }}</p>
-    {% endif %}
-    {% if post.last_modified_at%} 
-      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> Modified date : {{ post.last_modified_at | date: "%Y.%m.%d" }}</p>
+    {% if post.date and post.last_modified_at %}
+      <p class="page__meta">
+          <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> 
+          Date : {{ post.date | date: "%Y.%m.%d" }}
+          &nbsp;
+          <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> 
+          Modified date : {{ post.last_modified_at | date: "%Y.%m.%d" }}    
+      </p>
+        {% else %} 
+            <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> Date : {{ post.date | date: "%Y.%m.%d" }}</p>
     {% endif %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
   </article>

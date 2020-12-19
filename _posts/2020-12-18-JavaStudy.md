@@ -1,5 +1,5 @@
 ---
-title:  "2020.12.18-study"
+title:  "2020.12.18-JavaStudy"
 excerpt: "스프링 입문을 위한 자바 객체지향의 원리와 이해라는 책을 읽으며 중요한 내용을 정리한 글"
 categories:
   - Study
@@ -19,7 +19,7 @@ toc_label: "목차"
 어셈블리어 또 한 기계어와 마찬가지로 CPU별로 각자의 어셈블리어(Assembly Language)도 달랐다.
 어셈블리어를 기계어로 번역해주는 소프트웨어를 어셈블러(Assembler)라고 한다.
 
-#### java란?
+#### JAVA란?
 객체 지향 프로그래밍 언어(Object-Oriented Programming, OOP)로 1991년 제임스 고슬링을 포함한 썬 마이크로 시스템즈의 연구원
 들에 의해 Interactive TV용 프로그램 작성을 위해 처음 개발되었다.
 

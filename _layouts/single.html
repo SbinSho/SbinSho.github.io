@@ -31,12 +31,19 @@ layout: default
           <!-- single은 포스트 읽는 페이지 -->
           <!-- single 에선 page.date 사용 가능 -->
           <!-- 날씨 커스터 마이징 -->    
-          {% if page.date %}
-            <p class="page__meta"> <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> Date : {{ page.date | date: "%Y.%m.%d" }}</p>
-          {% endif %}
-            
-          {% if page.last_modified_at %}
-            <p class="page__meta"> <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> Modified date : {{ page.last_modified_at | date: "%Y.%m.%d" }}</p>
+          {% if page.date and page.last_modified_at %}
+            <p class="page__meta"> 
+                <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> 
+                Date : {{ page.date | date: "%Y.%m.%d" }}
+                &nbsp;
+                <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+                Modified date : {{ page.last_modified_at | date: "%Y.%m.%d" }}
+                </p>
+            {% else%}
+                <p class="page__meta"> 
+                <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> 
+                Date : {{ page.date | date: "%Y.%m.%d" }}
+                </p>
           {% endif %}
             
         </header>
