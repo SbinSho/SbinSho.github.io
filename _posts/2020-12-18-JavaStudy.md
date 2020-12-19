@@ -1,8 +1,8 @@
 ---
-title:  "2020.12.18-JavaStudy"
-excerpt: "스프링 입문을 위한 자바 객체지향의 원리와 이해라는 책을 읽으며 중요한 내용을 정리한 글"
+title:  "JavaStudy 1장"
+excerpt: "스프링 입문을 위한 자바 객체지향의 원리와 이해라는 책을 읽으며 중요한 내용을 단원별로 정리한 글입니다."
 categories:
-  - Study
+  - Java_Study
 
 toc: true
 toc_sticky: true
