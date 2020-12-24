@@ -71,7 +71,7 @@ last_modified_at : 2020-12-24
 
 * 다이아몬드 문제 ( Diamond Problem )
     - ![Diamond Problem](/assets/images/chap3/Diamond Problem.PNG)
-    - 최상위 추상클래스 SuperClass, SuperClass를 상속받은 A와 B 클래스가 있다. <br>SuperClass의 Method()를 A와 B는 상속 받았고, 이를 C라는 클래스가 A와B를<br> 다중상속 하면, C에서 test() 메서드 실행시 상속받은 Method()를 실행해야 하는<br>데 어떤 부모의 Method()를 실행해야하는지 알수가 없는 문제이다.
+    - 최상위 추상클래스 SuperClass, SuperClass를 상속받은 A와 B 클래스가 있다. SuperClass의 Method()를 A와 B는 상속 받았고, 이를 C라는 클래스가 A와B를 다중상속 하면, C에서 test() 메서드 실행시 상속받은 Method()를 실행해야 하는데 어떤 부모의 Method()를 실행해야하는지 알수가 없는 문제이다.
 
 다중 상속의 이점도 있기에, java에서는 다중 상속의 이점만을 가져온 인터페이스를 도입해 사용중이다.
 
