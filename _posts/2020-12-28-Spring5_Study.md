@@ -8,13 +8,13 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 
-last_modified_at : 2020-12-28
+last_modified_at : 2020-12-29
 
 ---
 
-#### Spring_framework 공부 내용 정리
+## Spring_framework 공부 내용 정리
 
-## 스프링 MVC 핵심 구성요소
+#### 스프링 MVC 핵심 구성요소
 
 *핵심요소
   1. HandlerMapping 
@@ -30,3 +30,18 @@ last_modified_at : 2020-12-28
     - @Configuration : 해당 클래스를 스프링 설정 클래스로 설정
     - @EnableWebMvc : 스프링 MVC 설정을 활성화
     
+---    
+#### WebMvcConfigurer 
+
+* addResourceHandlers
+    - 리소스 등록 및 핸들러를 관리하는 객체이다. ( 이미지, js, css, html 등 정적인 리소스 )
+
+    - java code
+
+```java
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) { // 정적자원 처리를 위한 addResourceHandlers
+		registry.addResourceHandler("/resources/**")  // -> /resources/ 이하로 오는 모든 요청을 resourceHandler에서 처리
+				.addResourceLocations("/resources/"); // -> 요청에 맵핑될 정적자원들의 위치 지정
+	}
+```
