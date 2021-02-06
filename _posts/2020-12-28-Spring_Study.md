@@ -1,5 +1,5 @@
 ---
-title:  "Spring5_Study"
+title:  "Spring_Study"
 excerpt: "Spring5 공부한 내용 정리"
 categories:
   - SpringFramework
@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 
-last_modified_at : 2021-01-08
+last_modified_at : 2021-02-07
 
 ---
 
@@ -25,6 +25,26 @@ last_modified_at : 2021-01-08
     - 컨트롤러의 실행 결과를 보여줄 View를 검색
 
 웹브라우저에서 요청이 들어와면 처리 과정은 DispatcherServlet이 모든 연결을 담당한다.
+
+---
+
+### root-context.xml, servlet-context.xml, web.xml 역할
+1. root-context.xml
+    - view와 관련되지 않은 객체를 정의한다.
+    - ex) Service, Repositroy, DB등 비지니스 로직과 관련된 설정을 해준다.
+
+2. servlet-context.xml
+    - 요청과 관련된 객체를 정의한다.
+    - url과 관련된 controller나, @어노테이션, ViewResolver, Interceptor, MultipartResolver등의 설정을 해준다.
+    
+3. web.xml
+    - WAS가 최초로 구동될 때, 각종 설정을 정의한다.
+    - 여러 xml파일을 인식하도록 각 파일을 가리켜 준다.
+
+
+![ DipatcherServlet 구조 ](https://docs.spring.io/spring-framework/docs/current/reference/html/images/mvc-context-hierarchy.png)
+
+> 출처: https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc
 
 ---
 
@@ -102,7 +122,7 @@ Template Engine이란 지정된 템플릿 양식과 데이터가 합쳐져 HTML 
 
 ---
 
-### spring 5 Log4j
+### spring Log4j
 
 * Log4j
     - 프로그램을 작성하는 도중에 로그를 남기기 위해 사용되는 자바 기반 로깅 유틸리티이다. 디버그용 도구로 주로 사용된다.
