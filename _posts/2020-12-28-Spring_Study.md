@@ -30,6 +30,7 @@ last_modified_at : 2021-02-07
 
 ### root-context.xml, servlet-context.xml, web.xml 역할
 1. root-context.xml
+    - 스프링의 환경설정 파일
     - view와 관련되지 않은 객체를 정의한다.
     - ex) Service, Repositroy, DB등 비지니스 로직과 관련된 설정을 해준다.
 
@@ -38,6 +39,7 @@ last_modified_at : 2021-02-07
     - url과 관련된 controller나, @어노테이션, ViewResolver, Interceptor, MultipartResolver등의 설정을 해준다.
     
 3. web.xml
+    - 웹프로젝트의 배치 기술서(deploy desriptor, 웹프로젝트의 환경설정파일)
     - WAS가 최초로 구동될 때, 각종 설정을 정의한다.
     - 여러 xml파일을 인식하도록 각 파일을 가리켜 준다.
 
