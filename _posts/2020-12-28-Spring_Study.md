@@ -38,15 +38,15 @@ last_modified_at : 2021-02-10
     - Pre-Loading : 컨테이너가 구동되는 시점에 객체들을 생성한다.
 
 ### WebApplication Context 설정 파일
+
 * servlet-context.xml ( Servlet WebApplicationContext )
     - 요청과 관련된 객체를 정의한다. url과 관련된 controller나, @어노테이션, ViewResolver, Interceptor, MultipartResolver등의 설정을 해준다.
-    - DispatcherServlet( servlet-context.xml )은 요청에 대응할 수 있는 Controller, ViewResolver, HandlerMapping 과 같은 스프링 빈(Beans)을 구성
-
+    - servlet-context.xml은 요청에 대응할 수 있는 Controller, ViewResolver, HandlerMapping 과 같은 스프링 빈(Beans)을 구성
 
 * root-context.xml ( Root WebApplicationContext )
     - 스프링의 환경설정 파일, view와 관련되지 않은 객체를 정의한다.
     - Service, Repositroy, DB등 비지니스 로직과 관련된 설정을 해준다.
-    - WebApplicationContext( root-context.xml )에는 모든 서블릿이 공유할 수 있는 Service, Repository 와 같은 스프링 빈을 구성합니다.
+    -  root-context.xml에는 모든 서블릿이 공유할 수 있는 Service, Repository 와 같은 스프링 빈을 구성합니다.
 
 ![ DipatcherServlet 구조 ](https://docs.spring.io/spring-framework/docs/current/reference/html/images/mvc-context-hierarchy.png)
 
@@ -73,7 +73,13 @@ last_modified_at : 2021-02-10
 4. src/main/webapp/WEB-INF
     - 웹에 필요한 view파일과 컴파일된 파일, 환경설정(ex : spring)  파일 폴더
     - 외부 사용자가 직접 접근 X, 컨트롤러를 통해 내부적으로만 접근 가능
-5. 프로젝트 시작 경로
+5. src/main/webapp/WEB-INF/classes
+    - 컴파일 된 파일이 보관되는 곳입니다.
+6. src/main/webapp/WEB-INF/spring
+    - 스프링 환경설정 파일(context)이 보관되는 곳입니다.
+7. src/main/webapp/WEB-INF/views
+    - 사용자에게 보여질 view page 폴더
+8. 프로젝트 시작 경로
     - workspace/프로젝트폴더명/src/main/webapp
 
 ## Template Engine

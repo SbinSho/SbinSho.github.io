@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 
-last_modified_at : 2021-02-10
+last_modified_at : 2021-02-21
 
 ---
 
@@ -24,3 +24,13 @@ last_modified_at : 2021-02-10
 
 ### @EnableWebMvc
 - 스프링 MVC 설정을 활성화
+
+### @ModelAttribute
+- 클라이언트가 전송하는 여러 파라미터들을 1대1로 객체에 바인딩하여 다시 Veiw로 넘겨서 출력하기 위해 사용되는 오브젝트이다.
+- Setter 메소드 혹은 생성자가 필수적으로 필요함, 둘 중 하나라도 존재하지 않으면 바인딩 되지 않고 오류가 발생한다.
+
+### @ResponseBody
+- 자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할
+
+### @RquestBody
+- HTTP 요청의 body 내용을 자바 객체로 매핑하는 역할
