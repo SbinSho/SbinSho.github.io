@@ -2,9 +2,7 @@
 title:  "면접준비 및 개인공부"
 excerpt: "면접준비 겸 개인공부를 정리하기 위한 글입니다."
 categories:
-  - Java
-  - Spring
-  - DB
+  - Interview
 
 toc: true
 toc_sticky: true

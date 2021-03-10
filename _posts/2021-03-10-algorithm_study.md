@@ -2,7 +2,6 @@
 title:  "algorithm_study ( chap1 ~~ )"
 excerpt: "자료구조와 함께 배우는 알고리즘 입문을 이용하여 공부한 내용을 정리한 글입니다."
 categories:
-  - java
   - algorithm
 
 toc: true
