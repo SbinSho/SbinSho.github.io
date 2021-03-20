@@ -2,13 +2,13 @@
 title:  "Git 원격 저장소 push 작업시 자동 로그인"
 excerpt: "github push하게 되면 인증정보를 입력해야하는데 인증정보를 묻지 않고 바로 push하는 작업"
 categories:
-  - git
+  - Git
 
 toc: true
 toc_sticky: true
 toc_label: "목차"
 
-last_modified_at : 2021-03-18
+last_modified_at : 2021-03-20
 
 ---
 
@@ -77,6 +77,17 @@ git config  --list
 # Global 설정
 git config --global --list
 ```
+
+### 옵션 초기화 하기
+
+```
+git config --global --unset credential.helper
+## system 옵션을 주면, 현재 시스템의 모든 사용자에게 적용
+git config --system --unset credential.helper
+```
+
+만약, 초기화가 안될 경우 윈도우 기준 '자격 증명 관리자'에서 github.com와 관련된 증명 제거
+
 
 ### 참고
 * https://pinedance.github.io/blog/2019/05/29/Git-Credential
