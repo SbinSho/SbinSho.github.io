@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 
-last_modified_at : 2021-03-22
+last_modified_at : 2021-03-23
 
 ---
 
@@ -71,6 +71,42 @@ last_modified_at : 2021-03-22
 | SMTPAppender | 로그 메시지를 이메일로 전송 |
 | NTEventAppender | 윈도우 시스템 이벤트 로그로 메시지 전송 |
 
+
+### pom.xml
+
+```xml
+
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.12.1</version>
+</dependency>
+
+```
+
+### log4j 1.x 버전 XML 환경설정
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+    </layout>
+  </appender>
+  <category name="org.apache.log4j.xml">
+    <priority value="info" />
+  </category>
+  <Root>
+    <priority value ="debug" />
+    <appender-ref ref="STDOUT" />
+  </Root>
+</log4j:configuration>
+
+```
 
 ### Log4j 초기 프로젝트 생성시 xml 파일
 
