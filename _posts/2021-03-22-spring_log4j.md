@@ -1,6 +1,6 @@
 ---
 title:  "spring_Log4j 설정"
-excerpt: "log4j 설명 및 설정 방법"
+excerpt: "log4j에 관한 설명 및 spring 프로젝트에서의 설정 방법"
 categories:
   - SpringFramework
 
@@ -16,7 +16,7 @@ last_modified_at : 2021-03-23
 
 프로그램을 작성하는 도중에 로그를 남기기 위해 사용되는 자바 기반 로깅 유틸리티이다. 디버그용 도구로 주로 사용된다.
 
-### Log4j 레벨
+### Log4j 로그 레벨
 
 - FATAL : 아주 심각한 에러가 발생한 상태를 나타낸다.
 - ERROR : 어떠한 요청을 처리하는 중 문제가 발생한 상태를 나타낸다.
@@ -108,7 +108,54 @@ last_modified_at : 2021-03-23
 
 ```
 
-### Log4j 초기 프로젝트 생성시 xml 파일
+### log4j 2.x 버전 XML 환경설정
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/"> <!-- Appenders -->
+
+	<!-- 해당 설정파일에서 사용하는 프로퍼티 -->
+	<Properties>
+		<Property name="layoutPattern">%d{yyyy.MM.dd HH:mm:ss} %-5p: %C-%m%n</Property>
+	</Properties>
+
+	<!-- LogEvent를 전달해주는 Appender -->
+	<Appenders>
+		<Console name="Console_Appender" target="SYSTEM_OUT">
+			<PatternLayout pattern="${layoutPattern}" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+	
+		<Root level="warn">
+			<AppenderRef ref="Console_Appender" />
+		</Root>
+
+		<Logger name="com.goCamping.controller" level="info"
+			additivity="false">
+			<AppenderRef ref="Console_Appender" />
+		</Logger>
+
+		<!-- 3rdparty Loggers -->
+		<Logger name="org.springframework.core" level="info"/>
+
+		<Logger name="org.springframework.beans" level="info"/>
+		
+		<Logger name="org.springframework.context" level="info" />
+		
+		<Logger name="org.springframework.web" level="info" />
+		
+	</Loggers>
+</Configuration>
+
+```
+
+> 참고 : https://velog.io/@bread_dd/Log4j-2-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
+### Log4j 초기 Spring 프로젝트 생성시 xml 파일
 
 ```xml
 
