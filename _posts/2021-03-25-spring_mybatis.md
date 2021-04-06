@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 
-last_modified_at : 2021-04-03
+last_modified_at : 2021-04-06
 
 ---
 
@@ -78,29 +78,102 @@ Mybatis에서는 프로그램에 있는 SQL쿼리들을 한 구성파일에 구�
 
 ```xml
 
+	<!-- Mysql Datasource 객체 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/spring_project?serverTimezone=UTC"/>
+		<property name="username" value="spring_project" />
+		<property name="password" value="spring_project"/>
+	</bean>
+	
+	
+	<!-- sqlSessionFactory 생성 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis/config/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mybatis/member-mapper.xml" />
+	</bean>
+	
+	<!-- sqlSessionTemplate 생성 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
 
+```
+
+### mapper 기본 파일 생성
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mybatisConfig">
+
+
+</mapper>
 
 
 ```
 
-* DataSource
-    *
-* SqlSessionFactory
-    *
-* SqlSessionTemplate
-    *
+### mybatis 환경설정 기본 파일 생성
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<configuration> 
 
 
-### mapper 파일 생성
+</configuration>
+```
 
-
-### mybatis 환경설정 파일 생성
-
-
-###
 
 ### Mybatis 연결 테스트
 
+```java
+
+	@Test
+	public void DB_연결테스트() {
+		try {
+			
+			Connection con = dataSource.getConnection();
+			logger.info("DB 연결 성공!");
+			
+		} catch (Exception e) {
+			logger.info("DB 연결 실패!");
+			e.printStackTrace();
+		}
+		
+	}
+
+
+```
+
+### Mybatis Mapper 테스트
+
+```java
+
+	@Test
+	public void mybaits_작동테스트() {
+		
+		try {
+			
+			SqlSession session = sqlFactory.openSession();
+			logger.info("mybatis 작동 테스트 성공!");
+			
+		} catch (Exception e) {
+			
+			logger.info("mybatis 작동 실패!");
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+```
 
 
 
