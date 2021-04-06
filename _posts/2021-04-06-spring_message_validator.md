@@ -13,6 +13,120 @@ last_modified_at : 2021-04-06
 
 ---
 
+## Spring 메시지 처리
+
+문자열이 뷰 코드에 하드 코딩 되어 있을 경우 동일 문자열을 변경할 때 문제가 있다. 
+
+예를 들어 '이메일'을 '이메일 주소'로 변경하기로 했다면 각 폼을 출력하는 JSP를 모두 찾아 변경해야한다.
+
+또 한 전 세계를 대상으로 하는 서비스는 다국어 지원에 문제가 있다. 각 언어에 맞게 뷰 코드를 따로 만드는 상황이 발생한다.
+
+이 두가지 문제를 해결하기 위해 spring에서 제공하는 ReloadableResourceBundleMessageSource를 이용해서 공통 메시지를 처리 할 수 있다.
+
+* 사용 방법
+    * 문자열을 담은 메시지 파일을 작성한다.
+    * 메시지 파일에서 값을 읽어오는 MessageSource 빈을 설정한다.
+    * JSP 코드에서 <spring:message> 태그를 사용해서 메시지를 출력한다.
+    
+> 문자열을 담은 메시지 파일 작성
+
+```properties
+
+NotBlank=필수 항목입니다. 공백 문자는 허용하지 않습니다.
+NotEmpty=필수 항목입니다.
+Size.password=암호 길이는 6자 이상이어야 합니다.
+Email=올바른 이메일 주소를 입력해야 합니다.
+name=이름
+
+```
+
+> MessageSource 빈 설정
+
+```xml
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- Encoding 설정 -->
+        <property name="defaultEncoding" value="UTF-8"/> 
+        <!-- Reload Cache 설정 -->
+        <property name="cacheSeconds" value="5"/>
+        <!-- basenames 설정: 아래처럼 하면 WEB-INF 밑의 message 폴더 아래의 labels로 시작하는 모든 Property-->
+        <property name="basenames">
+            <list>
+                <value>classpath:/messages/error</value>
+            </list>
+        </property>       
+    </bean>
+
+
+```
+
+
+> JSP 코드에서 <spring:message> 태그 사용
+
+```jsp
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> // spring 태그 사용을 위한 taglib 추가
+
+<spring:message code="name" /> // 메시지 프로퍼티 파일에서 읽어옴 ( "이름" 출력 )
+
+
+
+```
+
+> java에서 메시지 사용
+
+```java
+
+import java.util.Locale;
+ 
+import org.springframework.context.MessageSource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+ 
+public class MessageUtils {
+ 
+    private static MessageSource resources = new ClassPathXmlApplicationContext("classpath:/spring/'메시지 관련 context'.xml");
+ 
+    public static String getMessage(String code){
+        return resources.getMessage(code, null, Locale.getDefault);
+    }
+ 
+    public static String getMessage(String code, String args[]){
+        return resources.getMessage(code, args, Locale.getDefault);
+    }
+ 
+}
+
+-------------------------------------------------------------
+
+// 프로퍼티 파일
+errors.minlength={0} 은 {1}자 이상 입력해야 합니다.
+fail.common.msg=에러가 발생했습니다!
+
+
+-------------------------------------------------------------
+    
+String[] args = {"사용자 이름", "2"};
+String msg = MessageUtils.getMessage("errors.minlength", args); 
+System.out.println("msg : " + msg); // "msg : 사용자 이름 은 2자 이상 입력해야 합니다."
+ 
+String msg2 = MessageUtils.getMessage("fail.common.msg");
+System.out.println("msg2 : " + msg2); // "msg : 에러가 발생했습니다!"
+
+
+```
+
+### 다국어 지원 위한 메시지 파일
+
+다국어 메시지를 지원하려면 각 프로퍼티 파일 이름에 언어에 해당하는 로케일 문자를 추가한다.
+
+* lable_ko.properties
+* lable_en.properties
+
+label 뒤에 '_언어' 형식의 접미사가 붙었다. 언어는 두 글자 구분자로 한국어 'ko', 영어는 'en'이다.
+특정 언어에 해당하는 메시지 파일이 존재하지 않으면 언어 구분이 없는 label.properties 파일의 메시지를 사용한다.
+
+스프링 MVC는 웹 브라우저가 전송한 Accept-Language 헤더를 이용해서 Locale을 구한다.
+
 ## Spring Validation
 
 일반적으로 데이터 검증 (Validation) 은 여러 계층에 걸쳐서 이루어지게 된다. 동일한 내용의 검증로직이 각 계층별로 구현된다면 중복 작업으로 인한 불필요한 작업이 반복된다.
@@ -278,8 +392,18 @@ private String name;
     * 애노테이션이름.프로퍼티명
     * 애노테이션이름
 
+## 뷰 페이지에서 에러 코드 출력
 
-## Spring 메시지 처리
+```jsp
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> // spring 태그 사용을 위한 taglib 추가
+
+<form:error path="프로퍼티"/> // 에러 코드가 저장 된 필드명
+
+
+```
+
+    
 
 
 ## 참고
