@@ -312,7 +312,7 @@ public Validator getValidator() {
 
 ```
 
-#### Controller에 적용 ( 직접 호출 X, 어노태이션 사용 )
+### Controller에 적용 ( 직접 호출 X, 어노태이션 사용 )
 
 > @Valid를 이용한 글로벌 범위 Validator 적용 ( 직접 호출하지 않음 )
 
