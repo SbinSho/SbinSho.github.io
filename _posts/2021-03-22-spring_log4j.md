@@ -141,52 +141,29 @@ last_modified_at : 2021-04-18
 
 ### log4j 설정
 
-* Configuration
+#### Configuration
 
-```xml
+Configuration은 로그 설정의 최상위 요소 이다. Properties, Appenders, Loggers요소를 자식으로 가진다. status는 내부 이벤트에 대한 로그 레벨을 의미한다.
 
-<Configuration status="INFO"> <!-- status는 내부 이벤트에 대한 로그 레벨을 의미 -->
+#### Properties
 
-```
-
-Configuration은 로그 설정의 최상위 요소 이다. Properties, Appenders, Loggers요소를 자식으로 가진다.
-
----
-
-* Properties
-
-```xml
-
-<Properties>
-    <Property name="logNm">Spring Log4j2 Test</Property>
-    <Property name="layoutPattern">%style{%d{yyyy/MM/dd HH:mm:ss,SSS}}{cyan} %highlight{[%-5p]}{FATAL=bg_red, ERROR=red,
-            INFO=green, DEBUG=blue}  [%C] %style{[%t]}{yellow}- %m%n -</Property>
-</Properties>
-
-```
 Properties는 해당 Configuration 파일에서 사용할 프로퍼티를 의미한다. ( 변수와 비슷한 개념 )
 
----
-
-* layout
+#### layout
 
 Appender는 로그 이벤트를 Layout을 통해 포맷팅gksek. Appender가 받은 로그 이벤트를 Layout에게 전달하면, byte 배열을 반환합니다. Charset을 지정해주면 확실한 값을 얻을 수 있습니다.
 
----
 
-* Appenders
+#### Appenders
 
 Appender는 log 메시지를 특정 위치에 전달해주는 역할을 한다. layout을 통해 로그를 포매팅하고, 어떤 방식으로 로그를 제공할지 결정한다.
 
----
-
-* Logger
+#### Logger
 
 로거는 로깅을 직접하는 요소 이다. 로거는 패키지 별로 설정 가능하며, Root패키지의 로거는 필수적이고, 추가적인 로거는 Logger로 설정 할 수 있다.
 
----
 
-* Additivity
+#### Additivity
 
 두개의 로거가 같은 appender를 사용하여 동일한 메시지가 중복으로 출력이 될때, 둘 중 하나의 로거에 additivity="false" 태그를 추가하면 중복 출력이 방지된다.
 
@@ -196,6 +173,7 @@ Appender는 log 메시지를 특정 위치에 전달해주는 역할을 한다. 
     - log4jdbc-log4j2 추가
 
 ```xml
+
 <dependency>
     <groupId>org.bgee.log4jdbc-log4j2</groupId>
     <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
