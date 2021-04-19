@@ -145,22 +145,54 @@ last_modified_at : 2021-04-18
 
 Configuration은 로그 설정의 최상위 요소 이다. Properties, Appenders, Loggers요소를 자식으로 가진다. status는 내부 이벤트에 대한 로그 레벨을 의미한다.
 
+```xml
+
+<Configuration status="INFO">
+
+```
+
 #### Properties
 
 Properties는 해당 Configuration 파일에서 사용할 프로퍼티를 의미한다. ( 변수와 비슷한 개념 )
 
-#### layout
+```xml
 
-Appender는 로그 이벤트를 Layout을 통해 포맷팅gksek. Appender가 받은 로그 이벤트를 Layout에게 전달하면, byte 배열을 반환합니다. Charset을 지정해주면 확실한 값을 얻을 수 있습니다.
+<Properties>
+    <Property name="layoutPattern">%d{yyyy.MM.dd HH:mm:ss} %-5p: %C -%m%n</Property>
+</Properties>
 
+```
 
-#### Appenders
+#### Appenders & layout
 
-Appender는 log 메시지를 특정 위치에 전달해주는 역할을 한다. layout을 통해 로그를 포매팅하고, 어떤 방식으로 로그를 제공할지 결정한다.
+* Appender는 log 메시지를 특정 위치에 전달해주는 역할을 한다. layout을 통해 로그를 포매팅하고, 어떤 방식으로 로그를 제공할지 결정한다.
+
+```xml
+
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd hh:mm:ss} %5p [%c] %m%n" />
+		</Console>
+	</Appenders>
+
+```
 
 #### Logger
 
 로거는 로깅을 직접하는 요소 이다. 로거는 패키지 별로 설정 가능하며, Root패키지의 로거는 필수적이고, 추가적인 로거는 Logger로 설정 할 수 있다.
+
+```xml
+
+<!-- 3rdparty Loggers -->
+<Logger name="org.springframework.core" level="info" />
+
+<Logger name="org.springframework.beans" level="info" />
+
+<Logger name="org.springframework.context" level="info" />
+
+<Logger name="org.springframework.web" level="info" />
+```
 
 
 #### Additivity
@@ -169,7 +201,7 @@ Appender는 log 메시지를 특정 위치에 전달해주는 역할을 한다. 
 
 ## log4j Mybaits 출력
 
-1. pom.xml 설정 
+* pom.xml 설정 
     - log4jdbc-log4j2 추가
 
 ```xml
@@ -182,7 +214,7 @@ Appender는 log 메시지를 특정 위치에 전달해주는 역할을 한다. 
 
 ```
 
-2. classPath에 log4jdbc-log4j2.properties 파일 추가
+* classPath에 log4jdbc-log4j2.properties 파일 추가
     - log4jdbc.dump.sql.maxlinelength : 최대 몇 라인까지 출력할 것인가를 결정 0으로 하면 제한 없이 실행된 그대로 출력이 되고, 설정하지 않으면 그냥 한줄로 쭉 출력된다.
     
 ```
@@ -192,8 +224,9 @@ log4jdbc.dump.sql.maxlinelength=0
 
 ```
 
-3. datasource 변경
-    - driverClassName을 기존의 값에서 아래의 값으로 변경
+* datasource 변경
+    - driverClassName 변경 -> net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    - url 변경 -> jdbc:log4jdbc:mysql://localhost:3306/spring_project?serverTimezone=UTC 
     
 ```xml
 	<bean id="dataSource"
@@ -206,7 +239,7 @@ log4jdbc.dump.sql.maxlinelength=0
 
 ```
 
-4. log4j.xml 설정 추가
+* log4j.xml 설정 추가
 
 ```xml
 
